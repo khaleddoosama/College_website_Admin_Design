@@ -1,0 +1,145 @@
+/* asd */
+:required {
+    border-left: 2px solid red !important;
+}
+
+.container-Form {
+    max-width: 500px;
+    background: #fff;
+    box-shadow: inset 0px 0px 3px 0px rgb(0 0 0 / 13%);
+    padding: 30px;
+}
+
+.container-Form .Title {
+    background-color: var(--navColor);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+form .inputField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+form .inputField label {
+    width: 200px;
+    color: #505d61;
+    position: relative;
+}
+form .toolTip {
+    background-color: #333;
+    color: #fff;
+    min-width: 240px;
+    top: -60px;
+    transition: 0.5s;
+    opacity: 0;
+    z-index: 1080;
+}
+
+form .toolTip:before {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-style: solid;
+    border-width: 10px;
+    border-color: #333 transparent transparent;
+}
+/* 
+.inputField:hover {
+    overflow: visible;
+}
+
+form:hover .toolTip {
+    opacity: 1;
+} */
+
+.custom_select {
+    position: relative;
+    width: 100%;
+}
+
+.custom_select:before {
+    content: "";
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    right: 10px;
+    border: 8px solid;
+    border-color: #d5dbd9 transparent transparent transparent;
+    pointer-events: none;
+}
+
+.custom_select select,
+form .input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d5dbd9;
+    border-radius: 4px;
+    transition: 0.5s;
+}
+
+form .inputField .input:focus,
+form .inputField .custom_select select:focus {
+    border: 1px solid rgb(42, 42, 117);
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+    width: 100%;
+    padding: 10px;
+    background: #505d61;
+    color: #fff;
+    border-radius: 4px;
+    outline: none;
+    margin-bottom: 15px;
+    border:0;
+    transition: 0.3s;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+button {
+    background: black;
+    color: var(--fontColor);
+}
+
+/* Start Table */
+caption {
+    background-color: var(--navColor);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+table {
+    color: var(--navColor);
+    caption-side: top;
+}
+@media (max-width: 991px) {
+    table td:last-child input[type="submit"]{
+        width: 100% !important;
+    }
+}
+th {
+    background-color: #f5f5f5;
+    padding: 16px;
+    color: black;
+}
+
+td {
+    padding: 16px;
+    color: #777;
+}
+/* End Table */

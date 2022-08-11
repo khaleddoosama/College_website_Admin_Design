@@ -1,0 +1,120 @@
+{% extends 'C:\Users\lenovo\Desktop\CU.com\project\templates\pages\base.html'%}
+{%load static%}
+<!doctype html>
+<html>
+
+<head>
+    {% block title%}
+        <title>SignUp </title>
+        <meta description="SigUp/Register">
+    {%endblock%}
+</head>
+
+<body>
+    {% block content%}
+
+    <div class="container-Form w-100 my-4 mx-auto rounded">
+        <div class="Title fs-4 fw-bold mb-4 text-center p-2 rounded w-100">
+            Sign Up
+        </div>
+        <form method="POST" action="#" id="form">
+            {% csrf_token %}
+            <div class="inputField">
+                <label for="id">Student Id </label>
+                <input id="id" type="number" required name="Id" autofocus class="input">
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="name">Student Name </label>
+                <input id="name" type="text" required name="Name" placeholder="Enter Full Name" class="input">
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="email">Email</label>
+                <input id="email" type="email" name="Email" class="input">
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="phone">Phone</label>
+                <input id="phone" type="tel" name="Phone" class="input">
+                <span class="toolTip position-absolute start-50 translate-middle-x fs-6 py-2 px-3 text-center">like 0111111111</span>            
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="dep">Department</label>
+                <input id="dep" type="text" name="Department" placeholder="For Third Level" class="input">
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="B_D">Birth Day</label>
+                <input id="B_D" type="date" required name="Birth Day" class="input">
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="GPA">GPA</label>
+                <input id="GPA" name="gpa" required type="number" step=any min="0" max="4" class="input">
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="Gender"> Gender</label>
+                <div class="custom_select">
+                    <select name="Gender" id="Gender" required>
+                        <option value="" hidden>Select</option>
+                        <optgroup label="Select">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="level"> Level</label>
+                <div class="custom_select">
+                    <select name="Level" id="level" required>
+                        <option value="" hidden>Select</option>
+                        <optgroup label="Select">
+                            <option value="level 1">First Year</option>
+                            <option value="level 2">Second Year</option>
+                            <option value="level 3">Third Year</option>
+                            <option value="level 4">Fourth Year</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="Status"> Status</label>
+                <div class="custom_select">
+                    <select name="Status" id="Status" required>
+                        <option value="" hidden>Select</option>
+                        <optgroup label="Select">
+                            <option value=True>Active</option>
+                            <option value=False>Inactive</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+    
+            <input type="button" value="Register" onclick="RegisterAndEdit(event)" id="submit">
+        </form>
+    </div>
+    <div class="confirm">
+        <div class="confirm-body text-center position-absolute start-50 translate-middle p-3">
+            <i class="fa-solid fa-circle-xmark fs-1 text-danger p-2"></i>
+            <p class="fs-2 p-2">Canceled!</p>
+        </div>
+    </div>
+    <h1>{{error}}</h1>
+    <h1>{{id}}</h1>
+    {% endblock%}
+</body>
+
+</html>

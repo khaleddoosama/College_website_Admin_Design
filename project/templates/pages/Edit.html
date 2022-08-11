@@ -1,0 +1,173 @@
+{% extends 'C:\Users\lenovo\Desktop\CU.com\project\templates\pages\base.html'%}
+{%load static%}
+<!doctype html>
+<html style="font-family: Arial, Helvetica, sans-serif;" style="font-weight: bold;">
+
+<head>
+
+    {% block title%}
+    <title> Edit Student</title>
+    <meta name="description" description="Edit information/Update data">
+    {%endblock%}
+</head>
+
+{% block content%}
+    <div class="container-Form w-100 my-4 mx-auto rounded">
+        <div class="Title fs-4 fw-bold mb-4 text-center p-2 rounded w-100">
+            Edit data
+        </div>
+        <form method="post" action="#" id="form">
+            {% csrf_token %}
+            <div class="inputField">
+                <label for="id">Student Id </label>
+                <input id="id" type="number" required name="Id" autofocus class="input" value={{data.id}}>
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="name">Student Name </label>
+                <input id="name" type="text" required name="Name" placeholder="Enter Full Name" class="input" value="{{data.name | safe |title}}">
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="email">Email</label>
+                <input id="email" type="email" name="Email" class="input" value={{data.email}}>
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="phone">Phone</label>
+                <input id="phone" type="tel" name="Phone" class="input" value={{data.phone}}>
+                <span class="toolTip position-absolute start-50 translate-middle-x fs-6 py-2 px-3 text-center">like 0111111111</span>
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="dep">Department</label>
+                <input id="dep" type="text" name="Department" placeholder="For Third Level" class="input" readonly value={{data.department}}>
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="B_D">Birth Day</label>
+                <input id="B_D" type="date" required name="Birth Day" class="input" value="{{data.birthday|date:'Y-m-d'}}">
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="GPA">GPA</label>
+                <input id="GPA" name="gpa" required type="number" step=any min="0" max="4" class="input" value={{data.gpa}}>
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="Gender"> Gender</label>
+                <div class="custom_select">
+                    <select name="Gender" id="Gender" required>
+                        <option value="" hidden>Select</option>
+                        <optgroup label="Select">
+                            {%if data.gender == "male" %}
+                                <option value="male" selected>Male</option>
+                            {%else%}
+                                <option value="male">male</option>
+                            {%endif%}
+                            {%if data.gender == "female" %}
+                                <option value="female" selected>Female</option>
+                            {%else%}
+                                <option value="female">Female</option>
+                            {% endif %}
+                    </select>
+    
+                </div>
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="level"> Level</label>
+                <div class="custom_select">
+                    <select name="Level" id="level" required class="input">
+                        <option value="" hidden>Select</option>
+                        <optgroup label="Select">
+                            {%if data.level == "level 1" %}
+                                <option value="level 1" selected>First Year</option>
+                            {%else%}
+                                <option value="level 1">First Year</option>
+                            {% endif %}
+                            {%if data.level == "level 2" %}
+                                <option value="level 2" selected>Second Year</option>
+                            {%else%}
+                                <option value="level 2">Second Year</option>
+                            {% endif %}
+                            {%if data.level == "level 3" %}
+                                <option value="level 3" selected>Third Year</option>
+                            {%else%}
+                                <option value="level 3">Third Year</option>
+                            {% endif %}
+                            {%if data.level == "level 4" %}
+                                <option value="level 4" selected>Fourth Year</option>
+                            {%else%}
+                                <option value="level 4">Fourth Year</option>
+                            {% endif %}
+
+                    </select>
+                </div>
+            </div>
+            <br>
+    
+            <div class="inputField">
+                <label for="Status"> Status</label>
+                <div class="custom_select">
+                    <select name="Status" id="Status" required>
+                        <option value="" hidden>Select</option>
+                        <optgroup label="Select">
+                            {%if data.status == True %}
+                                <option value="True" selected>Active</option>
+                            {%else%}
+                                <option value="True">Active</option>
+                            {% endif %}
+
+                            {%if data.status == False %}
+                                <option value="False" selected>Inactive</option>
+                            {%else%}
+                                <option value="False">Inactive</option>
+                            {% endif %}
+
+                    </select>
+                </div>
+            </div>
+            <br>
+
+            <input type="button" value="Update" name="edit" id="submit" onclick="RegisterAndEdit(event)">
+            <input type="button" value="Delete" name="delete" id="del" onclick="deleteStudent(event)">
+        </form>
+    </div>
+    
+    <div class="deleteConfirm">
+        <div class="deleteConfirm-content text-center position-absolute start-50 translate-middle p-3 ">
+            <div class="deleteConfirm-header">
+                <h3>Are you sure?</h3>
+            </div>
+            <div class="deleteConfirm-body">
+                <p class="p-2 fs-3">You want to delete this student?</p>
+            </div>
+            <div class="deleteConfirm-footer">
+                <button class="btn btn-danger" id="delete">Delete</button>
+                <button class="btn btn-secondary" id="cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="confirm">
+        <div class="confirm-body text-center position-absolute start-50 translate-middle p-3">
+            <i class="fa-solid fa-circle-xmark fs-1 text-danger p-2"></i>
+            <p class="fs-2 p-2">Canceled!</p>
+        </div>
+    </div>
+
+    <h1>{{error}}</h1>
+    {%endblock%}
+
+</body>
+
+</html>

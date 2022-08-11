@@ -1,0 +1,167 @@
+/* asd */
+:root {
+    --fontColor: #c0d96f;
+    --navColor: #505d61;
+}
+
+*
+{
+    margin:0;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.active {
+    color: var(--fontColor);
+}
+
+::selection {
+    color: var(--fontColor);
+    background-color: black;
+}
+
+::placeholder {
+    opacity: 0.5;
+    padding-left: 5px;
+}
+
+img,
+svg {
+    vertical-align: baseline;
+}
+
+li {
+    list-style: none;
+    text-transform: capitalize;
+}
+
+a {
+    text-decoration: none;
+}
+/* Start NavBar */
+header {
+    background-color: var(--navColor);
+    height: 81px;
+    box-shadow: 0px 10px 20px 7px rgb(46 61 73 / 20%);
+}
+.logo a {
+    user-select: none;
+}
+.navbar {
+    position:unset;
+    flex-wrap: wrap;
+}
+.navbar .navbar-toggler {
+    box-shadow: none;
+}
+.toggle-menu {
+    color: white;
+}
+nav li {
+    margin-top: 10px;
+    padding:10px 20px;   
+}
+header nav ul {
+    display: flex;
+}
+@media (min-width: 992px) {
+    header  .navbar-toggler {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) {
+    header .navbar ul{
+        display: none;
+    }
+    .open {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 81px;
+        left: 0;
+        width: 100%;
+        background-color: var(--navColor);
+        padding: 10px;
+        z-index: 1;
+    }
+    .marginTop {
+        margin-top: 360px !important;
+    }
+}
+nav a {
+    text-decoration: none;
+    color:white;
+    font-size: 18px;
+    display: block;
+}
+.logo img {
+    height: 75px;
+    min-width: 150px;
+    max-width: 250px;
+}
+nav li:hover {
+    background-color: black;
+    border-radius: 20px;
+    padding:10px 20px;
+    transition: 0.5s;
+}
+nav li:hover a {
+    color: var(--fontColor);
+    transition: 0.5s;
+}
+/* End NavBar */
+/* Start Content */
+.nav-content {
+    color: var(--navColor);
+}
+
+.content {
+    max-width: 100%;
+    color: black;
+    background-color: #293e6f;
+    height: auto;
+    border-radius: 10px;
+}
+.content .title  {
+    width:fit-content;
+    border-bottom: 1px solid var(--navColor);
+}
+
+.deleteConfirm,
+.confirm {
+    visibility: hidden;
+}
+.deleteConfirm-content,
+.confirm-body {
+    background-color: #fff;
+    z-index: 1;
+    transition:all 0.5s;
+    min-width: 300px;
+    max-width: 400px;
+    opacity: 0;
+    top: 20%;
+}
+.deleteConfirm::after,  /* overlay */
+.confirm::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+/* End Content */
+/* Start Footer */
+.footer {
+    position: sticky;
+    width: 100%;
+    text-align: center;
+    background-color: #333;
+    color: white;
+}
+/* End Footer */

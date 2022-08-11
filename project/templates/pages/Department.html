@@ -1,0 +1,81 @@
+{% extends 'C:\Users\lenovo\Desktop\CU.com\project\templates\pages\base.html'%}
+{%load static%}
+<!doctype html>
+<html style="font-family: Arial, Helvetica, sans-serif;" style="font-weight: bold;">
+
+<head>
+    {% block title%}
+        <title>Departments page </title>
+        <meta name="description" description="Student Assignment Department/Departments page">
+    {%endblock%}
+</head>
+
+<body>
+    {% block content%}
+    <div class="container-Form w-100 my-4 mx-auto rounded">
+        <div class="Title fs-4 fw-bold mb-4 text-center p-2 rounded w-100">
+            Student Department
+        </div>
+        <div>
+            <form method="post" action="#" id="form">
+                {% csrf_token %}
+                <div class="inputField">
+                    <label for="id">Id</label>
+                    <input id="id" type="number" required name="Id" class="input" value ={{data.id}}>
+                </div>
+
+                <br>
+                <div class="inputField">
+                    <label for="Debartments"> Departments</label>
+                    <div class="custom_select">
+                        <select name="Department" id="Debartment" required>
+                            <option value="" hidden>Select</option>
+                            <optgroup label="Select">
+                                {% if data.department == "CS" %}
+                                    <option value="CS" selected>Computer Science</option>
+                                {% else %}
+                                    <option value="CS" >Computer Science</option>
+                                {% endif %}
+                                {%if data.department == "IS" %}
+                                    <option value="IS" selected>Information Science</option>
+                                {% else %}
+                                    <option value="IS">Information Science</option>
+                                {% endif %}
+                                {%if data.department == "IT" %}
+                                    <option value="IT" selected>Information Technology</option>
+                                {% else %}
+                                    <option value="IT">Information Technology</option>
+                                {% endif %}
+                                {%if data.department == "AI"%}
+                                    <option value="AI" selected>Artificial Intelligence</option>
+                                {% else %}
+                                    <option value="AI" >Artificial Intelligence</option>
+                                {% endif %}
+                                {%if data.department == "DS"%}
+                                <option value="DS" selected>Decision Support</option>
+                                {% else %}
+                                <option value="DS" >Decision Support</option>
+                                {% endif %}
+                        </select>
+                
+                    </div>
+                </div>
+                <br>
+                <input type="hidden" name="Level" id="Level" value="{{data.level}}">
+
+                <input type="button" value="Enroll" onclick="departmentAllow(event)" id="departmentSubmit"> 
+            </form>
+        </div>
+    </div>
+    <div class="confirm">
+        <div class="confirm-body text-center position-absolute start-50 translate-middle p-3">
+            <i class="fa-solid fa-circle-xmark fs-1 text-danger p-2"></i>
+            <p class="fs-2 p-2">Canceled!</p>
+        </div>
+    </div>
+
+    {% endblock %}
+        
+</body>
+
+</html>

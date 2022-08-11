@@ -1,0 +1,66 @@
+{% extends 'C:\Users\lenovo\Desktop\CU.com\project\templates\pages\base.html'%}
+{%load static%}
+<!doctype html>
+<html style="font-family: Arial, Helvetica, sans-serif;" style="font-weight: bold;">
+
+<head> 
+    {% block title%}
+    <title>Search For Active Students </title>
+    <meta description="Search For Student" />
+    {%endblock%}
+</head>
+
+<body>
+    {% block content%}
+    <div class="container-Form w-100 my-4 mx-auto rounded">
+        <div class="Title fs-4 fw-bold mb-4 text-center p-2 rounded w-100">
+            Search For Active Students
+        </div>
+        <form method="post" action="#">
+            {% csrf_token %}
+            
+            <div class="inputField">
+                <label for="1">Name</label>
+                <input id="1" placeholder="Enter The Name" type="text" name="Name" class="input" required>
+            </div>
+            <br>
+            <p id="dataFound" class="text-center mb-2 " ></p>
+
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
+    <div class="container">
+        <table class="search w-75 fs-5 fw-bold mx-auto text-center mb-4 d-none ">
+            <caption class="fs-4 text-center p-2 rounded w-50 mt-5 mb-4 mx-auto">
+                Active Students
+            </caption>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            {% for i in data %}
+            {% if i.status == True %}
+            <tr id="data">
+                <td>{{i.id}}</td>
+                <td>{{i.name|title}}</td>
+                <td>
+                    <form action="/Edit/{{i.id}}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value={{i.id}}>
+                        <input type="submit" value="Edit" class="w-75"> 
+                    </form>
+                </td>
+            </tr>
+            {%endif%}
+            {%endfor%}
+        </table>
+    </div>
+    {% endblock %}
+
+</body>
+
+</html>

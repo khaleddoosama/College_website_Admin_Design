@@ -1,0 +1,72 @@
+{% extends 'C:\Users\lenovo\Desktop\CU.com\project\templates\pages\base.html'%}
+{%load static%}
+<!doctype html>
+<html>
+
+<head>
+    {% block title%}
+      <title>Students Status </title>
+      <meta name="description" description="active/inactive students /Students Status" />
+    {%endblock%}
+
+</head>
+
+<body>
+  {% block content%}
+  <div class="container">
+    <table class="status w-100 fs-5 fw-bold mx-auto text-center mb-4 d-none">
+      <caption class="fs-4 text-center p-2 rounded w-50 mt-5 mb-4 mx-auto">
+        Students Status
+      </caption>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Active</th>
+          <th>Inactive</th>
+          <th></th>
+        </tr>
+      </thead>
+      {% for x in data %}
+      <tr id="data">
+        <td>{{x.id}}</td>
+        <td>{{x.name | title}}</td>
+        <td>
+              <form method="post" action="#" id="form">
+                {% csrf_token %}
+            {% if x.status == True %}
+            <div>
+              <input id="active" type="radio" name="Status" value=True checked>
+            </div>
+            {% else %}
+            <div>
+              <input id="active" type="radio" name="Status" value=True>
+            </div>
+            {% endif %}
+        </td>
+        <td>
+          {% if x.status == False %}
+          <div>
+            <input id="inactive" type="radio" name="Status" value=False checked>
+          </div>
+          {% else %}
+          <div>
+            <input id="inactive" type="radio" name="Status" value=False>
+          </div>
+          {% endif %}
+
+        </td>
+        <td>
+          <input type="hidden" name="Id" value="{{x.id}}">
+          <input type="submit" value="Change" class="w-75 ">
+        </td>
+        </Form>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  {% endblock %}
+    
+</body>
+
+</html>
